@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:id="@+id/nameView"
+        android:textColor="#ffffff"
+        android:textSize="35sp"
+        android:padding="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Planner" />
+        
+
+    <EditText
+        android:id="@+id/idText"
+        android:inputType="textUri"
+        android:selectAllOnFocus="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:ems="14"
+        android:hint="아이디"
+        android:layout_below="@+id/nameView" >
+        <requestFocus/>
+    </EditText>
+
+    <EditText
+        android:id="@+id/passText"
+        android:privateImeOptions="defaultInputmode=english;sympol=false"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:ems="14"
+        android:hint="비밀번호"
+        android:layout_below="@+id/idText" />
+
+    <Button
+		android:id="@+id/loginB"
+		android:text="로그인"
+		android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="40dp"
+		style="@style/ButtonText"
+        android:layout_below="@+id/passText" />
+    
+
+</RelativeLayout>

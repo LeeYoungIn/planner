@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f8f8"
+    android:orientation="vertical" >
+     
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        
+		<LinearLayout
+	        android:id="@+id/dateLayout"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/date_border" >
+	        
+		    <LinearLayout
+		        style="@style/DateLay" >
+		        
+		        <Button
+			        android:id="@+id/date0"
+			        style="@style/DateButton" />
+		    </LinearLayout>
+	        <LinearLayout
+		        style="@style/DateLay" >
+		        
+		        <Button
+			        android:id="@+id/date1"
+			        style="@style/DateButton" />
+		    </LinearLayout>
+		    <LinearLayout
+		        style="@style/DateLay" >
+		        
+		        <Button
+			        android:id="@+id/date2"
+			        style="@style/DateButton" />
+		    </LinearLayout>
+		    <LinearLayout
+		        style="@style/DateLay" >
+		        
+		        <Button
+			        android:id="@+id/date3"
+			        style="@style/DateButton" />
+		    </LinearLayout>
+		    <LinearLayout
+		        style="@style/DateLay" >
+		        
+		        <Button
+			        android:id="@+id/date4"
+			        style="@style/DateButton" />
+		    </LinearLayout>
+		    <LinearLayout
+		        style="@style/DateLay" >
+		        
+		        <Button
+			        android:id="@+id/date5"
+			        style="@style/DateButton" />
+		    </LinearLayout>
+		    <LinearLayout
+		        style="@style/DateLay" >
+		        
+		        <Button
+			        android:id="@+id/date6"
+			        style="@style/DateButton" />
+		    </LinearLayout>
+	    </LinearLayout>
+	    
+		<LinearLayout
+		    android:id="@+id/tabLayout"
+	        android:layout_below="@+id/dateLayout"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content" >
+		    
+		    <Button
+		        android:id="@+id/todoTab"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:text="To Do" />
+		    
+		    <Button
+		        android:id="@+id/timeTab"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:text="TimeTable" />
+		</LinearLayout>
+		
+		<LinearLayout
+	        android:id="@+id/subLay"
+	        android:layout_below="@+id/tabLayout"
+	        android:layout_width="fill_parent"
+	        android:layout_height="match_parent" />
+
+	</RelativeLayout>
+</LinearLayout>

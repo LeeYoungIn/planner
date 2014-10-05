@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f8f8"
+    android:orientation="vertical" >
+
+	<RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        
+	    <LinearLayout
+	        android:id="@+id/menuLayout"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+    		android:orientation="horizontal" >
+	        
+		    <Button
+		        android:id="@+id/todoButton"
+		        android:text="@string/todo_text"
+		        style="@style/SubButton"  />
+	        
+	    	<Button
+	    	    android:id="@+id/timeButton"
+	    	    android:text="@string/time_text"
+		        style="@style/SubButton" />
+	        
+	    </LinearLayout>
+	    
+	    <com.planner.app.SubFrameView
+	        android:id="@+id/contentLay"
+	        android:layout_below="@+id/menuLayout"
+	        android:layout_width="fill_parent"
+	        android:layout_height="match_parent" />
+    </RelativeLayout>
+</LinearLayout>
