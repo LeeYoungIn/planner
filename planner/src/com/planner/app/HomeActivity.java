@@ -283,51 +283,51 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 	}
 	
 	//select
-	public void select(int tableNum) {
+	public Cursor select(int tableNum) {
 		db = helper.getReadableDatabase();
 		
 		String table = DB.tableName(tableNum);
 		Cursor c = db.query(table, null, null, null, null, null, null);
 		
-		switch(tableNum) {
-		case NumSet.scheduleTable :
-			while (c.moveToNext()) {
-				int id = c.getInt(c.getColumnIndex(DB.ID));
-				int todo = c.getInt(c.getColumnIndex(DB.TODO));
-				int fin = c.getInt(c.getColumnIndex(DB.FINISH));
-				String st = c.getString(c.getColumnIndex(DB.START_TIME));
-				String end = c.getString(c.getColumnIndex(DB.END_TIME));
-				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
-				String con = c.getString(c.getColumnIndex(DB.CONTENT));
-				
-				Log.d("LOG", DB.ID + " : " + id + "\n" + DB.TODO + " : " + todo + "\n" + DB.FINISH + " : " + fin + "\n" +
-						DB.START_TIME + " : " + st + "\n" + DB.END_TIME + " : " + end + "\n" +
-						DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
-			}
-			break;
-			
-		case NumSet.listTable :
-			while (c.moveToNext()) {
-				int id = c.getInt(c.getColumnIndex(DB.ID));
-				String st = c.getString(c.getColumnIndex(DB.START_DATE));
-				String end = c.getString(c.getColumnIndex(DB.END_DATE));
-				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
-				String con = c.getString(c.getColumnIndex(DB.CONTENT));
-				
-				Log.d("LOG", DB.ID + " : " + id + "\n" + 
-						DB.START_DATE + " : " + st + "\n" + DB.END_DATE + " : " + end + "\n" +
-						DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
-			}
-			break;
-			
-		case NumSet.categoryTable :
-			while (c.moveToNext()) {
-				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
-				String con = c.getString(c.getColumnIndex(DB.CONTENT));
-				
-				Log.d("LOG", DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
-			}
-			break;
-		}
+		return c;
+		
+//		switch(tableNum) {
+//		case NumSet.scheduleTable :
+//			while (c.moveToNext()) {
+//				int id = c.getInt(c.getColumnIndex(DB.ID));
+//				int todo = c.getInt(c.getColumnIndex(DB.TODO));
+//				int fin = c.getInt(c.getColumnIndex(DB.FINISH));
+//				String st = c.getString(c.getColumnIndex(DB.START_TIME));
+//				String end = c.getString(c.getColumnIndex(DB.END_TIME));
+//				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
+//				String con = c.getString(c.getColumnIndex(DB.CONTENT));
+//				
+//				Log.d("LOG", DB.ID + " : " + id + "\n" + DB.TODO + " : " + todo + "\n" + DB.FINISH + " : " + fin + "\n" +
+//						DB.START_TIME + " : " + st + "\n" + DB.END_TIME + " : " + end + "\n" +
+//						DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
+//			}
+//			
+//		case NumSet.listTable :
+//			while (c.moveToNext()) {
+//				int id = c.getInt(c.getColumnIndex(DB.ID));
+//				String st = c.getString(c.getColumnIndex(DB.START_DATE));
+//				String end = c.getString(c.getColumnIndex(DB.END_DATE));
+//				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
+//				String con = c.getString(c.getColumnIndex(DB.CONTENT));
+//				
+//				Log.d("LOG", DB.ID + " : " + id + "\n" + 
+//						DB.START_DATE + " : " + st + "\n" + DB.END_DATE + " : " + end + "\n" +
+//						DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
+//			}
+//			
+//		case NumSet.categoryTable :
+//			while (c.moveToNext()) {
+//				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
+//				String con = c.getString(c.getColumnIndex(DB.CONTENT));
+//				
+//				Log.d("LOG", DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
+//			}
+//		}
+		
 	}
 }
