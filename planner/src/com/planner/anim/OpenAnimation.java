@@ -5,7 +5,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
-import android.widget.FrameLayout.LayoutParams;
+import android.widget.RelativeLayout;
 
 public class OpenAnimation extends TranslateAnimation implements
 		Animation.AnimationListener {
@@ -32,9 +32,9 @@ public class OpenAnimation extends TranslateAnimation implements
 
 	public void onAnimationEnd(Animation arg0) {
 
-		LayoutParams params = (LayoutParams) mainLayout.getLayoutParams();
+		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mainLayout.getLayoutParams();
 		params.leftMargin = panelWidth;
-		params.gravity = Gravity.LEFT;
+//		params.layout_gravity = Gravity.LEFT;
 		mainLayout.clearAnimation();
 		mainLayout.setLayoutParams(params);
 		mainLayout.requestLayout();

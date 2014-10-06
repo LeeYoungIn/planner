@@ -1,122 +1,113 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
-    <!-- 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/menuLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ff393c46"
-            android:gravity="left"
-            android:orientation="vertical"
-            android:textColor="#ff000000" >
-
-            <include
-                android:id="@+id/ic_leftslidemenu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                layout="@layout/leftslidemenu" />
-        </LinearLayout>
     
-    	<LinearLayout
-	        android:id="@+id/mainLayout"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:gravity="left"
-            android:background="#ffffffff" > -->
+   	<LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="#ffffffff" >
+        
+        <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" >
+	
+	        <Button
+	            android:id="@+id/menuButton"
+	            style="@style/HomeTopButton"
+	            android:text="=" />
 	        
 	        <LinearLayout
-		        android:layout_alignParentTop="true"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content" >
-		
-		        <Button
-		            android:id="@+id/menuButton"
-		            style="@style/HomeTopButton"
-		            android:text="=" />
-		        
-		        <LinearLayout
-		            android:layout_width="wrap_content"
-		            android:layout_height="fill_parent"
-		            android:layout_weight="1"
-		        	android:orientation="vertical" >
-		            
-		            <TextView 
-		                android:id="@+id/todayDate"
-		                android:layout_width="fill_parent"
+	            android:layout_width="wrap_content"
+	            android:layout_height="fill_parent"
+	            android:layout_weight="1"
+	        	android:orientation="vertical" >
+	            
+	            <TextView 
+	                android:id="@+id/todayDate"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="0.3"
+	                android:gravity="center_horizontal"
+	                android:layout_gravity="bottom"
+	                android:textSize="15sp"
+	                android:text="0월 0일" />
+	            
+	            <LinearLayout
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="0.7"
+	                android:gravity="center_horizontal" >
+	                
+	                <Button
+		                android:id="@+id/modeButton"
+		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
-		                android:layout_weight="0.3"
-		                android:gravity="center_horizontal"
-		                android:layout_gravity="bottom"
-		                android:textSize="15sp"
-		                android:text="0월 0일" />
-		            
-		            <LinearLayout
-		                android:layout_width="fill_parent"
-		                android:layout_height="wrap_content"
-		                android:layout_weight="0.7"
-		                android:gravity="center_horizontal" >
-		                
-		                <Button
-			                android:id="@+id/modeButton"
-			                android:layout_width="wrap_content"
-			                android:layout_height="wrap_content"
-			                android:background="@android:color/transparent"
-			                android:textSize="30sp"
-			                android:text="데일리" />
-		                
-		            </LinearLayout>
-		        </LinearLayout>
-		        
-		        <Button
-		            android:id="@+id/addButton"
-		            style="@style/HomeTopButton"
-		            android:text="+" />
-		    
-		    </LinearLayout>
-		    
-		    <LinearLayout
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content" >
-		        
-		        <TabHost
-				    android:id="@android:id/tabhost"
-			        android:layout_width="fill_parent"
-			        android:layout_height="fill_parent" >
-				       
-					<TabWidget
-		                android:id="@android:id/tabs"
-			            android:layout_width="0dp"
-				        android:layout_height="0dp" />
-			
-					<FrameLayout
-				        android:id="@android:id/tabcontent"
-				        android:layout_width="fill_parent"
-				        android:layout_height="fill_parent" />
-				</TabHost>
-		    </LinearLayout>
-		    
-		    <!-- 
-		    <LinearLayout
-				android:id="@+id/fragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-		    
-		    <LinearLayout
-                android:id="@+id/empty"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@android:color/transparent" />
+		                android:background="@android:color/transparent"
+		                android:textSize="30sp"
+		                android:text="데일리" />
+	                
+	            </LinearLayout>
+	        </LinearLayout>
+	        
+	        <Button
+	            android:id="@+id/addButton"
+	            style="@style/HomeTopButton"
+	            android:text="+" />
+	    
 	    </LinearLayout>
-    </FrameLayout> -->
-</LinearLayout>
+    </LinearLayout>
+    
+   	<LinearLayout
+        android:id="@+id/tabLayout"
+        android:layout_below="@id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
+        
+        <TabHost
+		    android:id="@android:id/tabhost"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent" >
+		       
+			<TabWidget
+                android:id="@android:id/tabs"
+	            android:layout_width="0dp"
+		        android:layout_height="0dp" />
+	
+			<FrameLayout
+		        android:id="@android:id/tabcontent"
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent" />
+		</TabHost>
+    </LinearLayout>
+    
+   	<LinearLayout
+    	android:id="@+id/empty"
+    	android:layout_below="@id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000" />
+    
+   	<LinearLayout
+        android:id="@+id/menuLayout"
+        android:layout_below="@id/mainLayout"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ff393c46"
+        android:orientation="vertical"
+        android:textColor="#ff000000" >
+
+        <include
+            android:id="@+id/ic_leftslidemenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/leftslidemenu" />
+    </LinearLayout>
+</RelativeLayout>

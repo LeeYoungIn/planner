@@ -3,8 +3,9 @@ package com.planner.anim;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.LinearLayout;
 import android.widget.FrameLayout.LayoutParams;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class CloseAnimation extends TranslateAnimation implements
 		TranslateAnimation.AnimationListener {
@@ -28,7 +29,7 @@ public class CloseAnimation extends TranslateAnimation implements
 		setAnimationListener(this);
 
 		// Clear left and right margins
-		LayoutParams params = (LayoutParams) mainLayout.getLayoutParams();
+		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mainLayout.getLayoutParams();
 		params.rightMargin = 0;
 		params.leftMargin = 0;
 		mainLayout.setLayoutParams(params);

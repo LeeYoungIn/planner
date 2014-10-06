@@ -10,14 +10,24 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.planner.anim.CloseAnimation;
+import com.planner.anim.OpenAnimation;
 import com.planner.dialog.AddDialog;
 import com.planner.value.DB;
 import com.planner.value.NumSet;
@@ -38,8 +48,10 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 	private TabHost tabHost;
 
 	private int leftMenuWidth;
-//	private LinearLayout mainLay, menuLay;
+	private LinearLayout mainLay, menuLay, empty, tabLay;
 	private static boolean isLeftExpanded;
+	private DisplayMetrics metrics = new DisplayMetrics();
+	private Animation openAni, closeAni;
 	
 	private TextView todayT;
 	private Button menuB, modeB, addB;
@@ -63,9 +75,16 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 		modeB = (Button) findViewById(R.id.modeButton);
 		addB = (Button) findViewById(R.id.addButton);
 		
+		mainLay = (LinearLayout) findViewById(R.id.mainLayout);
+		menuLay = (LinearLayout) findViewById(R.id.menuLayout);
+		tabLay = (LinearLayout) findViewById(R.id.tabLayout);
+		empty = (LinearLayout) findViewById(R.id.empty);
+		
+		openAni = AnimationUtils.loadAnimation(this, R.anim.slide_open);
+		closeAni = AnimationUtils.loadAnimation(this, R.anim.slide_close);
+		
 		init();
 		setTop();
-//		initSildeMenu();
 		
 		setIntent();
 	}
@@ -80,6 +99,17 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 	private void init() {
 		cal = Calendar.getInstance();
 		mode = NumSet.DAILY;
+		
+		RelativeLayout.LayoutParams leftMenuLayoutPrams;
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		leftMenuWidth = (int) ((metrics.widthPixels) * NumSet.MENU_RATE);
+		
+		leftMenuLayoutPrams = (RelativeLayout.LayoutParams) menuLay.getLayoutParams();
+		leftMenuLayoutPrams.width = leftMenuWidth;
+		menuLay.setLayoutParams(leftMenuLayoutPrams);
+		
+		menuLay.setVisibility(View.INVISIBLE);
+		empty.setVisibility(View.GONE);
 	}
 	
 	private void setTop() {
@@ -91,58 +121,56 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 		addB.setOnClickListener(this);
 	}
 	
-//	private void initSildeMenu() {
-//		FrameLayout.LayoutParams leftMenuLayoutPrams;
-//
-//		DisplayMetrics metrics = new DisplayMetrics();
-//		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//		leftMenuWidth = (int) ((metrics.widthPixels) * MENU_RATE);
-//		
-//		leftMenuLayoutPrams = (FrameLayout.LayoutParams) menuLay.getLayoutParams();
-//		leftMenuLayoutPrams.width = leftMenuWidth;
-//		menuLay.setLayoutParams(leftMenuLayoutPrams);
-//
-//	}
-	
-//	private void menuLeftSlideAnimationToggle() {
-//
-//		if (!isLeftExpanded) {
-//			isLeftExpanded = true;
-//
-//			// Expand
-//			new OpenAnimation(mainLay, leftMenuWidth,
+	private void menuLeftSlideAnimationToggle() {
+
+		if (!isLeftExpanded) {
+			isLeftExpanded = true;
+
+			menuLay.startAnimation(openAni);
+			menuLay.setVisibility(View.VISIBLE);
+
+			// Expand
+//			new OpenAnimation(menuLay, leftMenuWidth,
+//					Animation.RELATIVE_TO_SELF, 0.0f - leftMenuWidth,
+//					Animation.RELATIVE_TO_SELF, 0, 0, mainLay.getHeight(), 0, mainLay.getHeight());
+//			
+//			new OpenAnimation(empty, leftMenuWidth,
 //					Animation.RELATIVE_TO_SELF, 0.0f,
-//					Animation.RELATIVE_TO_SELF, MENU_RATE, 0, 0.0f, 0, 0.0f);
-//
-//			FrameLayout viewGroup = (FrameLayout) findViewById(R.id.fragment).getParent();
-//			enableDisableViewGroup(viewGroup, false);
-//
-//			((LinearLayout) findViewById(R.id.empty)).setVisibility(View.VISIBLE);
-//
-//			findViewById(R.id.empty).setEnabled(true);
-//			findViewById(R.id.empty).setOnTouchListener(new OnTouchListener() {
-//				@Override
-//				public boolean onTouch(View arg0, MotionEvent arg1) {
-//					menuLeftSlideAnimationToggle();
-//					return true;
-//				}
-//			});
-//
-//		} else {
-//			isLeftExpanded = false;
-//
-//			// close
-//			new CloseAnimation(mainLay, leftMenuWidth,
+//					Animation.RELATIVE_TO_SELF, NumSet.MENU_RATE, 0, mainLay.getHeight(), 0, mainLay.getHeight());
+
+			enableDisableViewGroup(tabLay, false);
+
+			empty.setVisibility(View.VISIBLE);
+			empty.setEnabled(true);
+			empty.setOnTouchListener(new OnTouchListener() {
+				@Override
+				public boolean onTouch(View arg0, MotionEvent arg1) {
+					menuLeftSlideAnimationToggle();
+					return true;
+				}
+			});
+			
+
+			
+			
+
+		} else {
+			isLeftExpanded = false;
+
+			menuLay.startAnimation(closeAni);
+			menuLay.setVisibility(View.INVISIBLE);
+
+			// close
+//			new CloseAnimation(empty, leftMenuWidth,
 //					TranslateAnimation.RELATIVE_TO_SELF, 0.75f,
-//					TranslateAnimation.RELATIVE_TO_SELF, 0.0f, 0, 0.0f, 0, 0.0f);
-//
-//			FrameLayout viewGroup = (FrameLayout) findViewById(R.id.fragment).getParent();
-//			enableDisableViewGroup(viewGroup, true);
-//
-//			((LinearLayout) findViewById(R.id.empty)).setVisibility(View.GONE);
-//			findViewById(R.id.empty).setEnabled(false);
-//		}
-//	}
+//					TranslateAnimation.RELATIVE_TO_SELF, 0.0f, 0, mainLay.getHeight(), 0, 0.0f);
+
+			enableDisableViewGroup(tabLay, true);
+
+			empty.setVisibility(View.INVISIBLE);
+			empty.setEnabled(false);
+		}
+	}
 	
 	public static void enableDisableViewGroup(ViewGroup viewGroup, boolean enabled) {
 		int childCount = viewGroup.getChildCount();
@@ -163,20 +191,19 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.menuButton :
-//			menuLeftSlideAnimationToggle();
+			menuLeftSlideAnimationToggle();
 			break;
 			
 		case R.id.modeButton :
-			Intent intent = getIntent();
-			finish();
-			startActivity(intent);
+//			Intent intent = getIntent();
+//			finish();
+//			startActivity(intent);
 			break;
 			
 		case R.id.addButton :
 			addD = new AddDialog(me, this);
 			addD.show();
 			break;
-			
 		}
 	}
 	
@@ -184,7 +211,6 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 		todayT.setText(mon_day_form.format(cur.getTime()));
 	}
 	
-
 	//insert into Schedule
 	public void insert(boolean todo, boolean finish, String start, String end, String category, String content) {
 		db = helper.getWritableDatabase();
