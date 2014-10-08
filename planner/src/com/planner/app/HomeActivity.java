@@ -19,15 +19,12 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.planner.anim.CloseAnimation;
-import com.planner.anim.OpenAnimation;
 import com.planner.dialog.AddDialog;
 import com.planner.value.DB;
 import com.planner.value.NumSet;
@@ -40,8 +37,8 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 
 	public static Context me;
 	
-	public static SQLiteDatabase db;
-	public static MySQLiteOpenHelper helper;
+//	private static SQLiteDatabase db;
+	private static MySQLiteOpenHelper helper;
 	
 	private Calendar cal;
 	
@@ -129,15 +126,6 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 			menuLay.startAnimation(openAni);
 			menuLay.setVisibility(View.VISIBLE);
 
-			// Expand
-//			new OpenAnimation(menuLay, leftMenuWidth,
-//					Animation.RELATIVE_TO_SELF, 0.0f - leftMenuWidth,
-//					Animation.RELATIVE_TO_SELF, 0, 0, mainLay.getHeight(), 0, mainLay.getHeight());
-//			
-//			new OpenAnimation(empty, leftMenuWidth,
-//					Animation.RELATIVE_TO_SELF, 0.0f,
-//					Animation.RELATIVE_TO_SELF, NumSet.MENU_RATE, 0, mainLay.getHeight(), 0, mainLay.getHeight());
-
 			enableDisableViewGroup(tabLay, false);
 
 			empty.setVisibility(View.VISIBLE);
@@ -150,20 +138,11 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 				}
 			});
 			
-
-			
-			
-
 		} else {
 			isLeftExpanded = false;
 
 			menuLay.startAnimation(closeAni);
 			menuLay.setVisibility(View.INVISIBLE);
-
-			// close
-//			new CloseAnimation(empty, leftMenuWidth,
-//					TranslateAnimation.RELATIVE_TO_SELF, 0.75f,
-//					TranslateAnimation.RELATIVE_TO_SELF, 0.0f, 0, mainLay.getHeight(), 0, 0.0f);
 
 			enableDisableViewGroup(tabLay, true);
 
@@ -201,159 +180,165 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 			break;
 			
 		case R.id.addButton :
-			addD = new AddDialog(me, this);
+			addD = new AddDialog(me, this, helper);
 			addD.show();
 			break;
 		}
 	}
 	
+	public void drop(View v) {
+		SQLiteDatabase db = helper.getWritableDatabase();
+		
+		helper.onUpgrade(db, NumSet.version, NumSet.version + 1);
+	}
+
 	public void setClickedDate(Calendar cur) {
 		todayT.setText(mon_day_form.format(cur.getTime()));
 	}
 	
-	//insert into Schedule
-	public void insert(boolean todo, boolean finish, String start, String end, String category, String content) {
-		db = helper.getWritableDatabase();
-		
-		String sql = DB.INSERT + DB.SCHE + " " + DB.tableVal(NumSet.scheduleTable) + 
-				"'" + todo + "', '" + finish + "', '" + start + "', '" + end + "', '" + category + "', '" + content + "');";
-		
-		db.execSQL(sql);
-	}
-	
-	//insert into List
-	public void insert(String start, String end, String category, String content) {
-		db = helper.getWritableDatabase();
-		
-		String sql = DB.INSERT + DB.LIST + " " + DB.tableVal(NumSet.listTable) + 
-				"'" + start + "', '" + end + "', '" + category + "', '" + content + "');";
-		
-		db.execSQL(sql);
-		
-//		values.put(DB.START_DATE, start.getTime().toString());
-//		values.put(DB.END_DATE, end.getTime().toString());
+//	//insert into Schedule
+//	public void insert(boolean todo, boolean finish, String start, String end, String category, String content) {
+//		db = helper.getWritableDatabase();
+//		
+//		String sql = DB.INSERT + DB.SCHE + " " + DB.tableVal(NumSet.scheduleTable) + 
+//				"'" + todo + "', '" + finish + "', '" + start + "', '" + end + "', '" + category + "', '" + content + "');";
+//		
+//		db.execSQL(sql);
+//	}
+//	
+//	//insert into List
+//	public void insert(String start, String end, String category, String content) {
+//		db = helper.getWritableDatabase();
+//		
+//		String sql = DB.INSERT + DB.LIST + " " + DB.tableVal(NumSet.listTable) + 
+//				"'" + start + "', '" + end + "', '" + category + "', '" + content + "');";
+//		
+//		db.execSQL(sql);
+//		
+////		values.put(DB.START_DATE, start.getTime().toString());
+////		values.put(DB.END_DATE, end.getTime().toString());
+////		values.put(DB.CATEGORY, category);
+////		values.put(DB.CONTENT, content);
+////		
+////		db.insert(DB.LIST, null, values);
+//	}
+//	
+//	//insert into Category
+//	public void insert(String categoryName, String colorName) {
+//		db = helper.getWritableDatabase();
+//		
+//		String sql = DB.INSERT + DB.CATE + " " + DB.tableVal(NumSet.categoryTable) + 
+//				"'" + categoryName + "', '" + colorName + "');";
+//		
+//		db.execSQL(sql);
+//		
+////		ContentValues values = new ContentValues();
+////		
+////		values.put(DB.CATEGORY, categoryName);
+////		values.put(DB.COLOR, colorName);
+////		
+////		db.insert(DB.CATE, null, values);
+//	}
+//	
+//	//delete
+//	public void delete(int tableNum, String arg) {
+//		db = helper.getWritableDatabase();
+//		
+//		String table = DB.tableName(tableNum);
+//
+//		if (tableNum == NumSet.categoryTable)
+//			db.delete(table, DB.CATEGORY + "=?", new String[]{arg});
+//		else db.delete(table, DB.ID + "=?", new String[]{arg});
+//	}
+//	
+//	//update Schedule
+//	public void update(String id, boolean todo, boolean finish, String start, String end, String category, String content) {
+//		db = helper.getWritableDatabase();
+//		
+//		ContentValues values = new ContentValues();
+//		
+//		values.put(DB.TODO, todo);
+//		values.put(DB.FINISH, finish);
+//		values.put(DB.START_TIME, start);
+//		values.put(DB.END_TIME, end);
 //		values.put(DB.CATEGORY, category);
 //		values.put(DB.CONTENT, content);
 //		
-//		db.insert(DB.LIST, null, values);
-	}
-	
-	//insert into Category
-	public void insert(String categoryName, String colorName) {
-		db = helper.getWritableDatabase();
-		
-		String sql = DB.INSERT + DB.CATE + " " + DB.tableVal(NumSet.categoryTable) + 
-				"'" + categoryName + "', '" + colorName + "');";
-		
-		db.execSQL(sql);
-		
+//		db.update(DB.SCHE, values, DB.ID + "=?", new String[]{id});
+//	}
+//	
+//	//update List
+//	public void update(String id, String start, String end, String category, String content) {
+//		db = helper.getWritableDatabase();
+//
+//		ContentValues values = new ContentValues();
+//		
+//		values.put(DB.START_DATE, start);
+//		values.put(DB.END_DATE, end);
+//		values.put(DB.CATEGORY, category);
+//		values.put(DB.CONTENT, content);
+//		
+//		db.update(DB.LIST, values, DB.ID + "=?", new String[]{id});
+//	}
+//	
+//	//update Category
+//	public void update(String categoryName, String colorName) {
+//		db = helper.getWritableDatabase();
+//		
 //		ContentValues values = new ContentValues();
 //		
 //		values.put(DB.CATEGORY, categoryName);
 //		values.put(DB.COLOR, colorName);
 //		
-//		db.insert(DB.CATE, null, values);
-	}
-	
-	//delete
-	public void delete(int tableNum, String arg) {
-		db = helper.getWritableDatabase();
-		
-		String table = DB.tableName(tableNum);
-
-		if (tableNum == NumSet.categoryTable)
-			db.delete(table, DB.CATEGORY + "=?", new String[]{arg});
-		else db.delete(table, DB.ID + "=?", new String[]{arg});
-	}
-	
-	//update Schedule
-	public void update(String id, boolean todo, boolean finish, String start, String end, String category, String content) {
-		db = helper.getWritableDatabase();
-		
-		ContentValues values = new ContentValues();
-		
-		values.put(DB.TODO, todo);
-		values.put(DB.FINISH, finish);
-		values.put(DB.START_TIME, start);
-		values.put(DB.END_TIME, end);
-		values.put(DB.CATEGORY, category);
-		values.put(DB.CONTENT, content);
-		
-		db.update(DB.SCHE, values, DB.ID + "=?", new String[]{id});
-	}
-	
-	//update List
-	public void update(String id, String start, String end, String category, String content) {
-		db = helper.getWritableDatabase();
-
-		ContentValues values = new ContentValues();
-		
-		values.put(DB.START_DATE, start);
-		values.put(DB.END_DATE, end);
-		values.put(DB.CATEGORY, category);
-		values.put(DB.CONTENT, content);
-		
-		db.update(DB.LIST, values, DB.ID + "=?", new String[]{id});
-	}
-	
-	//update Category
-	public void update(String categoryName, String colorName) {
-		db = helper.getWritableDatabase();
-		
-		ContentValues values = new ContentValues();
-		
-		values.put(DB.CATEGORY, categoryName);
-		values.put(DB.COLOR, colorName);
-		
-		db.update(DB.CATE, values, DB.CATEGORY + "=?", new String[]{categoryName});
-	}
-	
-	//select
-	public Cursor select(int tableNum) {
-		db = helper.getReadableDatabase();
-		
-		String table = DB.tableName(tableNum);
-		Cursor c = db.query(table, null, null, null, null, null, null);
-		Cursor cursor = c;
-		
-		switch(tableNum) {
-		case NumSet.scheduleTable :
-			while (c.moveToNext()) {
-				int id = c.getInt(c.getColumnIndex(DB.ID));
-				int todo = c.getInt(c.getColumnIndex(DB.TODO));
-				int fin = c.getInt(c.getColumnIndex(DB.FINISH));
-				String st = c.getString(c.getColumnIndex(DB.START_TIME));
-				String end = c.getString(c.getColumnIndex(DB.END_TIME));
-				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
-				String con = c.getString(c.getColumnIndex(DB.CONTENT));
-				
-				Log.d("LOG", DB.ID + " : " + id + "\n" + DB.TODO + " : " + todo + "\n" + DB.FINISH + " : " + fin + "\n" +
-						DB.START_TIME + " : " + st + "\n" + DB.END_TIME + " : " + end + "\n" +
-						DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
-			}
-			
-		case NumSet.listTable :
-			while (c.moveToNext()) {
-				int id = c.getInt(c.getColumnIndex(DB.ID));
-				String st = c.getString(c.getColumnIndex(DB.START_DATE));
-				String end = c.getString(c.getColumnIndex(DB.END_DATE));
-				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
-				String con = c.getString(c.getColumnIndex(DB.CONTENT));
-				
-				Log.d("LOG", DB.ID + " : " + id + "\n" + 
-						DB.START_DATE + " : " + st + "\n" + DB.END_DATE + " : " + end + "\n" +
-						DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
-			}
-			
-		case NumSet.categoryTable :
-			while (c.moveToNext()) {
-				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
-				String con = c.getString(c.getColumnIndex(DB.CONTENT));
-				
-				Log.d("LOG", DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
-			}
-		}
-		
-		return cursor;
-	}
+//		db.update(DB.CATE, values, DB.CATEGORY + "=?", new String[]{categoryName});
+//	}
+//	
+//	//select
+//	public Cursor select(int tableNum) {
+//		db = helper.getReadableDatabase();
+//		
+//		String table = DB.tableName(tableNum);
+//		Cursor c = db.query(table, null, null, null, null, null, null);
+//		Cursor cursor = c;
+//		
+//		switch(tableNum) {
+//		case NumSet.scheduleTable :
+//			while (c.moveToNext()) {
+//				int id = c.getInt(c.getColumnIndex(DB.ID));
+//				int todo = c.getInt(c.getColumnIndex(DB.TODO));
+//				int fin = c.getInt(c.getColumnIndex(DB.FINISH));
+//				String st = c.getString(c.getColumnIndex(DB.START_TIME));
+//				String end = c.getString(c.getColumnIndex(DB.END_TIME));
+//				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
+//				String con = c.getString(c.getColumnIndex(DB.CONTENT));
+//				
+//				Log.d("LOG", DB.ID + " : " + id + "\n" + DB.TODO + " : " + todo + "\n" + DB.FINISH + " : " + fin + "\n" +
+//						DB.START_TIME + " : " + st + "\n" + DB.END_TIME + " : " + end + "\n" +
+//						DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
+//			}
+//			
+//		case NumSet.listTable :
+//			while (c.moveToNext()) {
+//				int id = c.getInt(c.getColumnIndex(DB.ID));
+//				String st = c.getString(c.getColumnIndex(DB.START_DATE));
+//				String end = c.getString(c.getColumnIndex(DB.END_DATE));
+//				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
+//				String con = c.getString(c.getColumnIndex(DB.CONTENT));
+//				
+//				Log.d("LOG", DB.ID + " : " + id + "\n" + 
+//						DB.START_DATE + " : " + st + "\n" + DB.END_DATE + " : " + end + "\n" +
+//						DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
+//			}
+//			
+//		case NumSet.categoryTable :
+//			while (c.moveToNext()) {
+//				String cat = c.getString(c.getColumnIndex(DB.CATEGORY));
+//				String con = c.getString(c.getColumnIndex(DB.CONTENT));
+//				
+//				Log.d("LOG", DB.CATEGORY + " : " + cat + "\n" + DB.CONTENT + " : " + con);
+//			}
+//		}
+//		
+//		return cursor;
+//	}
 }

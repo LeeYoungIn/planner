@@ -13,7 +13,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	private final String CREATE_TABLE = "create table ";
 	
 	private final String boolType = " boolean default false not null";
-	private final String idType = " integer auto_increment primary key";
+	private final String idType = " integer primary key";
 	private final String datetimeType = " datetime";
 	private final String dateType = " date not null";
 	private final String categoryType = " varchar(50)";
@@ -72,5 +72,4 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 		
 		onCreate(db);
 	}
-
 }

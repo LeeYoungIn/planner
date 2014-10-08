@@ -19,10 +19,11 @@
         android:text="@string/schedule_text" />
 
     <Button
-        android:id="@+id/btn3"
+        android:id="@+id/dropButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Button 3 " />
+        android:text="DROP"
+        android:onClick="drop" />
 
     <Button
         android:id="@+id/btn4"

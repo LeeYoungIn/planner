@@ -25,6 +25,6 @@ public class NumSet {
 	public static final int SNAP_VELOCITY = 100;
 	public static final int ONE_SEC = 1000;
 	
-	public static final float MENU_RATE = (float) 0.75;
+	public static final float MENU_RATE = (float) 0.70;
 	
 }
