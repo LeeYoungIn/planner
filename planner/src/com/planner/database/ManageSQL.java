@@ -39,20 +39,31 @@ public class ManageSQL {
 	public void insert(MySQLiteOpenHelper helper, String start, String end, String category, String content) {
 		db = helper.getWritableDatabase();
 		
-		String sql = DB.INSERT + DB.LIST + " " + DB.tableVal(NumSet.listTable) + 
-				"'" + start + "', '" + end + "', '" + category + "', '" + content + "');";
+		ContentValues values = new ContentValues();
 		
-		db.execSQL(sql);
+		values.put(DB.START_DATE, start);
+		values.put(DB.END_DATE, end);
+		values.put(DB.CATEGORY, category);
+		values.put(DB.CONTENT, content);
+		
+		db.insert(DB.LIST, null, values);
 	}
 	
 	//insert into Category
 	public void insert(MySQLiteOpenHelper helper, String categoryName, String colorName) {
 		db = helper.getWritableDatabase();
 		
-		String sql = DB.INSERT + DB.CATE + " " + DB.tableVal(NumSet.categoryTable) + 
-				"'" + categoryName + "', '" + colorName + "');";
+//		String sql = DB.INSERT + DB.CATE + " " + DB.tableVal(NumSet.categoryTable) + 
+//				"'" + categoryName + "', '" + colorName + "');";
+//		
+//		db.execSQL(sql);
 		
-		db.execSQL(sql);
+		ContentValues values = new ContentValues();
+		
+		values.put(DB.CATEGORY, categoryName);
+		values.put(DB.COLOR, colorName);
+		
+		db.insert(DB.CATE, null, values);
 	}
 	
 	//delete

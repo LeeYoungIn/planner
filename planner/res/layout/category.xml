@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f8f8"
+    android:orientation="vertical" >
+     
+    <LinearLayout
+        android:id="@+id/oneDayLayout"
+	    style="@style/CategoryLayout" >
+        
+		<LinearLayout
+	        style="@style/CategoryLayout" >
+        
+	        <RelativeLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent" >
+		        
+		        <TextView
+			        android:id="@+id/dateText"
+			        android:layout_alignParentLeft="true"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="몇월 몇일 무슨요일" />
+		        
+		        <Button
+		            android:id="@+id/moreButton"
+			        android:layout_alignParentRight="true"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="+"/>
+		    </RelativeLayout>
+		</LinearLayout>	
+			    
+	    <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="match_parent" >
+	        
+	        <ListView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content">
+	            
+	        </ListView>
+	    </LinearLayout>
+	</LinearLayout>
+</RelativeLayout>

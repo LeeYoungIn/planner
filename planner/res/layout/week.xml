@@ -18,49 +18,49 @@
 	        android:background="@drawable/date_border" >
 	        
 		    <LinearLayout
-		        style="@style/DateLay" >
+		        style="@style/DateBtnLay" >
 		        
 		        <Button
 			        android:id="@+id/date0"
 			        style="@style/DateButton" />
 		    </LinearLayout>
 	        <LinearLayout
-		        style="@style/DateLay" >
+		        style="@style/DateBtnLay" >
 		        
 		        <Button
 			        android:id="@+id/date1"
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
-		        style="@style/DateLay" >
+		        style="@style/DateBtnLay" >
 		        
 		        <Button
 			        android:id="@+id/date2"
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
-		        style="@style/DateLay" >
+		        style="@style/DateBtnLay" >
 		        
 		        <Button
 			        android:id="@+id/date3"
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
-		        style="@style/DateLay" >
+		        style="@style/DateBtnLay" >
 		        
 		        <Button
 			        android:id="@+id/date4"
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
-		        style="@style/DateLay" >
+		        style="@style/DateBtnLay" >
 		        
 		        <Button
 			        android:id="@+id/date5"
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
-		        style="@style/DateLay" >
+		        style="@style/DateBtnLay" >
 		        
 		        <Button
 			        android:id="@+id/date6"

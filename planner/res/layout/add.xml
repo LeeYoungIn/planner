@@ -27,6 +27,19 @@
         android:padding="20dp" >
         
         <EditText
+            android:id="@+id/categoryText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/categoryHint" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp" >
+        
+        <EditText
             android:id="@+id/startText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

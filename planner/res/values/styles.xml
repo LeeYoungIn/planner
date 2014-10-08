@@ -44,11 +44,11 @@
 	    <item name="android:text">0</item>
 	</style>
 	
-	<style name="DateLay">
+	<style name="DateBtnLay">
 	    <item name="android:layout_width">0dp</item>
 	    <item name="android:layout_height">fill_parent</item>
 	    <item name="android:layout_weight">1</item>
-	    <item name="android:background">#ffffff</item>
+	    <item name="android:background">@drawable/date_btn_border</item>
 	    <item name="android:gravity">center</item>
 	    <item name="android:padding">10dp</item>
 	</style>
@@ -59,6 +59,15 @@
 	    <item name="android:layout_weight">1</item>
 	    <item name="android:gravity">center</item>
 	    <item name="android:padding">10dp</item>
+	</style>
+	
+	<style name="CategoryLayout">
+	    <item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:paddingLeft">10dp</item>
+	    <item name="android:paddingRight">10dp</item>
+	    <item name="android:paddingTop">5dp</item>
+	    <item name="android:paddingBottom">5dp</item>
 	</style>
 	
 </resources>

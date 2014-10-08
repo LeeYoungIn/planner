@@ -13,9 +13,10 @@
     <string name="schedule_text">할 일 / 타임라인</string>
     <string name="category_text">카테고리</string>
     
-    <string name="contentHint">내용을 입력하세요</string>
-    <string name="startHint">2014-10-02 11:10:00</string>
-    <string name="timeHint">1시간</string>
-    <string name="registerB_text">등록</string>
+    <string name="contentHint">내용</string>
+    <string name="categoryHint">카테고리</string>
+    <string name="startHint">시작시간</string>
+    <string name="timeHint">소요시간 (분)</string>
+    <string name="registerB_text">확인</string>
     
 </resources>
