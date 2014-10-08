@@ -7,16 +7,16 @@
     android:padding="10dp" >
 
     <Button
-        android:id="@+id/btn1"
+        android:id="@+id/categoryButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Button 1 " />
+        android:text="@string/category_text" />
 
     <Button
-        android:id="@+id/btn2"
+        android:id="@+id/scheduleButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Button 2 " />
+        android:text="@string/schedule_text" />
 
     <Button
         android:id="@+id/btn3"
