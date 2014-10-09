@@ -82,15 +82,23 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 		
 		init();
 		setTop();
-		
-		setIntent();
 	}
 	
-	private void setIntent() {
+	public void ScheduleShow(View v) {
 		Intent intent = new Intent(HomeActivity.this, FrameActivity.class);
 		intent.putExtra(StringSet.MODE, mode);
 		
+		tabHost.clearAllTabs();
 		tabHost.addTab(tabHost.newTabSpec(StringSet.MAIN).setIndicator(StringSet.MAIN).setContent(intent));
+		menuLeftSlideAnimationToggle();
+	}
+	
+	public void CategoryShow(View v) {
+		Intent intent = new Intent(HomeActivity.this, CategoryActivity.class);
+		
+		tabHost.clearAllTabs();
+		tabHost.addTab(tabHost.newTabSpec(StringSet.MAIN).setIndicator(StringSet.MAIN).setContent(intent));
+		menuLeftSlideAnimationToggle();
 	}
 	
 	private void init() {
@@ -107,6 +115,11 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 		
 		menuLay.setVisibility(View.INVISIBLE);
 		empty.setVisibility(View.GONE);
+		
+		Intent intent = new Intent(HomeActivity.this, FrameActivity.class);
+		intent.putExtra(StringSet.MODE, mode);
+		
+		tabHost.addTab(tabHost.newTabSpec(StringSet.MAIN).setIndicator(StringSet.MAIN).setContent(intent));
 	}
 	
 	private void setTop() {

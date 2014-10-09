@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         
+        <activity android:name=".CategoryActivity" />
         <activity android:name=".DayToDoActivity" />
         <activity android:name=".DayTimeActivity" />
         <activity android:name=".FrameActivity" />

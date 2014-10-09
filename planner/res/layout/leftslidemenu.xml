@@ -10,13 +10,15 @@
         android:id="@+id/categoryButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/category_text" />
+        android:text="@string/category_text"
+        android:onClick="CategoryShow" />
 
     <Button
         android:id="@+id/scheduleButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/schedule_text" />
+        android:text="@string/schedule_text"
+        android:onClick="ScheduleShow" />
 
     <Button
         android:id="@+id/dropButton"
