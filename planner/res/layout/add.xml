@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:orientation="vertical" >
     
-
     <LinearLayout
+        android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp" >
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        style="@style/AddLayoutPaddin" >
+        
+        <TextView
+            android:id="@+id/add_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_title"
+            android:textSize="18sp"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:orientation="vertical"
+        style="@style/AddLayoutPaddin" >
+        
+        <TextView
+            android:paddingBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/todo_title"
+            android:textSize="15sp" />
         
         <EditText
             android:id="@+id/contentText"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/contentHint" >
+            android:layout_height="wrap_content" >
             
             <requestFocus />
         </EditText>
@@ -22,55 +48,217 @@
     </LinearLayout>
     
     <LinearLayout
+        android:id="@+id/categoryLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp" >
+        android:layout_below="@id/text"
+        android:orientation="vertical"
+        style="@style/AddLayoutPaddin" >
         
-        <EditText
-            android:id="@+id/categoryText"
+        <TextView
+            android:paddingBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/category_text"
+            android:textSize="15sp" />
+        
+        <LinearLayout 
+            android:id="@+id/categoryGroupLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/categoryHint" />
+            android:orientation="horizontal" >
+            
+            <LinearLayout 
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1" >
+	            
+	            <Button
+					android:id="@+id/cate1Button"
+					style="@style/CategoryButton"
+            		android:text="전체" />
+	            
+            </LinearLayout>
+            
+            <LinearLayout 
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1" >
+	            
+	            <Button
+					android:id="@+id/cate2Button"
+					style="@style/CategoryButton"
+            		android:text="기본" />
+	            
+            </LinearLayout>
+        </LinearLayout>
         
     </LinearLayout>
     
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/timeTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp" >
+        android:layout_below="@id/categoryLayout"
+        style="@style/AddLayoutPaddin"
+        android:orientation="horizontal" >
         
-        <EditText
-            android:id="@+id/startText"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/startHint" />
+		<TextView
+	        android:id="@+id/expandableGroup"
+		    android:layout_alignParentLeft="true"
+			android:paddingBottom="5dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/time_title"
+	        android:textSize="15sp" />
+		
+		<ToggleButton
+		    android:id="@+id/toggle"
+		    android:layout_alignParentRight="true"
+			android:paddingBottom="5dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+		    
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:id="@+id/timeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeTitle"
+        android:orientation="vertical"
+        style="@style/AddLayoutPaddin" >
         
+        <LinearLayout
+		    android:id="@+id/startLayout"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:orientation="horizontal" >
+			
+			<Button
+				android:id="@+id/startCancel"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=" " />
+	    
+		    <TextView
+				android:id="@+id/start"
+				android:paddingBottom="5dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/start_time"
+	            android:textSize="14sp" />
+			    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="fill_parent"
+		        android:orientation="horizontal" >
+		        
+		        <Button 
+					android:id="@+id/startDateButton"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:text="  "
+	            	android:textSize="14sp" />
+		    
+			    <Button 
+			        android:id="@+id/startTimeButton"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:text="  "
+	            	android:textSize="14sp" />
+		    </LinearLayout>
+	    
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/endLayout"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
+	    
+			<Button
+				android:id="@+id/endCancel"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=" " />
+	    
+		    <TextView
+				android:id="@+id/end"
+				android:paddingBottom="5dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/end_time"
+	            android:textSize="14sp" />
+			    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="fill_parent"
+		        android:orientation="horizontal" >
+		        
+		        <Button 
+					android:id="@+id/endDateButton"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:text=" "
+	            	android:textSize="14sp" />
+		    
+			    <Button 
+			        android:id="@+id/endTimeButton"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:text=" "
+	            	android:textSize="14sp" />
+		    </LinearLayout>
+		    
+		</LinearLayout>
+        
+        <!-- 
+        <ExpandableListView
+			android:id="@+id/timesetGroup"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+        	android:groupIndicator="@null" /> -->
+            
     </LinearLayout>
     
     <LinearLayout
+        android:id="@+id/bottom"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp" >
+        android:layout_below="@id/timeLayout"
+        style="@style/AddLayoutPaddin"
+        android:orientation="horizontal"
+        android:gravity="center" >
         
-        <EditText
-            android:id="@+id/timeText"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/timeHint" />
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+        	android:gravity="center" >
+            
+            <Button
+	            android:id="@+id/registerButton"
+	            style="@style/DefaultButton"
+	            android:text="@string/registerB_text" />
+        </LinearLayout>
         
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+        	android:gravity="center" >
+            
+            <Button
+	            android:id="@+id/cancelButton"
+	            style="@style/DefaultButton"
+	            android:text="@string/registerC_text" />
+        </LinearLayout>
     </LinearLayout>
     
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp" >
-        
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/registerB_text"
-            android:gravity="center" />
-        
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

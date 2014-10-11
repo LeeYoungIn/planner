@@ -6,19 +6,21 @@ import java.util.Date;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ToggleButton;
 
-import com.planner.app.HomeActivity;
 import com.planner.app.MySQLiteOpenHelper;
 import com.planner.app.R;
 import com.planner.database.ManageSQL;
 import com.planner.value.NumSet;
 
-public class AddDialog extends Dialog implements android.view.View.OnClickListener {
+public class AddDialog extends Dialog implements android.view.View.OnClickListener, OnCheckedChangeListener {
 
 	private final ManageSQL sql = new ManageSQL();
 	private static MySQLiteOpenHelper helper;
@@ -26,11 +28,22 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 	private Context parent;
 	private View.OnClickListener clickLis;
 	
-	private EditText contentT, cateT, stT, endT;
-	private Button registerB;
+	private EditText contentT;
+	private LinearLayout cateLay, cateGroup;
+	private Button cateB1, cateB2;
+	private LinearLayout timeLay, startLay, endLay;
+//	private ExpandableListView timeGroup;
+//	private ExpandableListView mListView;
+	private ToggleButton toggleB;
+	private Button stD, stT, endD, endT;
+	private Button okB, cancelB;
 	
 	private SimpleDateFormat time_sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	private SimpleDateFormat date_sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
+//	private ArrayList<String> mGroupList = null;
+//	private ArrayList<ArrayList<String>> mChildList = null;
+//	private ArrayList<String> mChildListContent = null;
 	
 	public AddDialog(Context context, View.OnClickListener click, MySQLiteOpenHelper helper) {
 		super(context);
@@ -49,17 +62,71 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 		initComponent();
 	}
 
+	private void expandableData() {
+//		mGroupList = new ArrayList<String>();
+//		mChildList = new ArrayList<ArrayList<String>>();
+//		mChildListContent = new ArrayList<String>();
+//
+//		mGroupList.add(HomeActivity.me.getString(R.string.time_title));
+//		mGroupList.add("group2");
+//		mGroupList.add("group3");
+//
+//		mChildListContent.add(HomeActivity.me.getString(R.string.start_time));
+//		mChildListContent.add(HomeActivity.me.getString(R.string.end_time));
+//		mChildListContent.add("3");
+//
+//		mChildList.add(mChildListContent);
+//		mChildList.add(mChildListContent);
+//		mChildList.add(mChildListContent);
+	}
 	
 	private void initComponent() {
 		contentT = (EditText) findViewById(R.id.contentText);
-		cateT = (EditText) findViewById(R.id.categoryText);
-		stT = (EditText) findViewById(R.id.startText);
-		endT = (EditText) findViewById(R.id.timeText);
-		registerB = (Button) findViewById(R.id.registerButton);
+		cateLay = (LinearLayout) findViewById(R.id.categoryLayout);
+		cateGroup = (LinearLayout) findViewById(R.id.categoryGroupLayout);
+		cateB1 = (Button) findViewById(R.id.cate1Button);
+		cateB2 = (Button) findViewById(R.id.cate2Button);
+		toggleB = (ToggleButton) findViewById(R.id.toggle);
+		timeLay = (LinearLayout) findViewById(R.id.timeLayout);
+		startLay = (LinearLayout) findViewById(R.id.startLayout);
+		endLay = (LinearLayout) findViewById(R.id.endLayout);
+//		endLay = (LinearLayout) findViewById(R.id.endLayout);
+//		timeGroup = (ExpandableListView) findViewById(R.id.timesetGroup);
+//		mListView = (ExpandableListView) findViewById(R.id.timesetGroup);
+//		
+//		timeGroup.setAdapter(new ExpandableListViewAdapter(parent));
+//		timeGroup.setOnGroupClickListener(new OnGroupClickListener() {
+//			@Override
+//			public boolean onGroupClick(ExpandableListView pa, View v,
+//					int groupPosition, long id) {
+//				Toast.makeText(parent, "g click = " + groupPosition, 
+//						Toast.LENGTH_SHORT).show();
+//				return false;
+//			}
+//		});
 		
-		registerB.setOnClickListener(this);
+		toggleB.setChecked(true);
+		toggleB.setOnCheckedChangeListener(this);
 		
-		cateT.setText("��ü");
+		
+		okB = (Button) findViewById(R.id.registerButton);
+		cancelB = (Button) findViewById(R.id.cancelButton);
+		
+		okB.setOnClickListener(this);
+		cancelB.setOnClickListener(this);
+		
+		expandableData();
+
+//		mListView.setAdapter(new com.planner.widget.BaseExpandableAdapter(parent, mGroupList, mChildList));
+//		mListView.setOnGroupClickListener(new OnGroupClickListener() {
+//			@Override
+//			public boolean onGroupClick(ExpandableListView p, View v,
+//					int groupPosition, long id) {
+//				Toast.makeText(parent.getApplicationContext(), "g click = " + groupPosition, 
+//						Toast.LENGTH_SHORT).show();
+//				return false;
+//			}
+//		});
 	}
 
 	private void Add() {
@@ -70,7 +137,7 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 		
 		if (isTodo) {
 			sql.insert(helper, getDate(Calendar.getInstance()), getDate(Calendar.getInstance()),
-					cateT.getText().toString().trim(), contentT.getText().toString().trim());
+					"카테고리".trim(), contentT.getText().toString().trim());
 			sql.select(helper, NumSet.listTable);
 		}
 		
@@ -81,7 +148,7 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 			endT.setText("30");
 			
 			sql.insert(helper, isTodo, false, stT.getText().toString().trim(),
-					getEndTime(cal, endT.getText().toString()), cateT.getText().toString().trim(),
+					getEndTime(cal, endT.getText().toString()), "카테고리".trim(),
 					contentT.getText().toString().trim());
 			sql.select(helper, NumSet.scheduleTable);
 		}
@@ -140,5 +207,15 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 	
 	public void onBackPressed() {
 		super.onBackPressed();
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton arg0, boolean check) {
+		// TODO Auto-generated method stub
+		
+		if (!check) {
+			timeLay.setVisibility(View.GONE);
+		} else timeLay.setVisibility(View.VISIBLE);
+		
 	}
 }

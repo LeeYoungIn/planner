@@ -13,10 +13,15 @@
     <string name="schedule_text">할 일 / 타임라인</string>
     <string name="category_text">카테고리</string>
     
-    <string name="contentHint">내용</string>
-    <string name="categoryHint">카테고리</string>
-    <string name="startHint">시작시간</string>
-    <string name="timeHint">소요시간 (분)</string>
-    <string name="registerB_text">확인</string>
+    <string name="registerB_text">등록</string>
+    <string name="registerC_text">취소</string>
     
+    <string name="register_title">일정 / 할 일 등록</string>    
+    <string name="todo_title">일정명</string>    
+    <string name="time_title">시간</string>    
+    <string name="start_time">시작시간</string>    
+    <string name="end_time">종료시간</string>
+    
+    <string name="am">오전</string>    
+    <string name="pm">오후</string>
 </resources>
