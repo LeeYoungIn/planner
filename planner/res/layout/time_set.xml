@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+		<LinearLayout
+		    android:id="@+id/startLayout"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:orientation="horizontal" >
+			
+			<Button
+				android:id="@+id/startCancel"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=" " />
+	    
+		    <TextView
+				android:id="@+id/start"
+				android:paddingBottom="5dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/start_time"
+	            android:textSize="14sp" />
+			    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="fill_parent"
+		        android:orientation="horizontal" >
+		        
+		        <Button 
+					android:id="@+id/startDateButton"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:text="  "
+	            	android:textSize="14sp" />
+		    
+			    <Button 
+			        android:id="@+id/startTimeButton"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:text="  "
+	            	android:textSize="14sp" />
+		    </LinearLayout>
+	    
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/endLayout"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" >
+	    
+			<Button
+				android:id="@+id/endCancel"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="X" />
+	    
+		    <TextView
+				android:id="@+id/end"
+				android:paddingBottom="5dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/end_time"
+	            android:textSize="14sp" />
+			    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="fill_parent"
+		        android:orientation="horizontal" >
+		        
+		        <Button 
+					android:id="@+id/endDateButton"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:text="2014. 10. 10"
+	            	android:textSize="14sp" />
+		    
+			    <Button 
+			        android:id="@+id/endTimeButton"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:text="오후 2시"
+	            	android:textSize="14sp" />
+		    </LinearLayout>
+		    
+		</LinearLayout>
+</LinearLayout>

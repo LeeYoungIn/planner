@@ -112,17 +112,22 @@
 			android:text="@string/time_title"
 	        android:textSize="15sp" />
 		
-		<ToggleButton
-		    android:id="@+id/toggle"
+		<LinearLayout
 		    android:layout_alignParentRight="true"
-			android:paddingBottom="5dp"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-	        android:button="@null"
-	        android:textOff=""
-	        android:textOn=""
-	        android:background="@drawable/toggleswitch" />
-		    
+			android:layout_height="wrap_content" >
+            
+		    <ToggleButton
+			    android:id="@+id/toggle"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+		        android:button="@null"
+		        android:textOff=""
+		        android:textOn=""
+		        android:background="@drawable/switchoff"
+		         />
+		</LinearLayout>
+		
     </RelativeLayout>
     
     <LinearLayout
