@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
+import com.planner.app.HomeActivity;
 import com.planner.app.MySQLiteOpenHelper;
 import com.planner.app.R;
 import com.planner.database.ManageSQL;
@@ -31,19 +32,15 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 	private EditText contentT;
 	private LinearLayout cateLay, cateGroup;
 	private Button cateB1, cateB2;
-	private LinearLayout timeLay, startLay, endLay;
-//	private ExpandableListView timeGroup;
-//	private ExpandableListView mListView;
 	private ToggleButton toggleB;
-	private Button stD, stT, endD, endT;
+	private LinearLayout timeLay, startLay, endLay;
+	private Button stCan, stD, stT;
+	private Button endCan, endD, endT;
 	private Button okB, cancelB;
 	
 	private SimpleDateFormat time_sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	private SimpleDateFormat date_sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
-//	private ArrayList<String> mGroupList = null;
-//	private ArrayList<ArrayList<String>> mChildList = null;
-//	private ArrayList<String> mChildListContent = null;
+	private SimpleDateFormat form = new SimpleDateFormat("yyyy. MM. dd");
 	
 	public AddDialog(Context context, View.OnClickListener click, MySQLiteOpenHelper helper) {
 		super(context);
@@ -62,24 +59,6 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 		initComponent();
 	}
 
-	private void expandableData() {
-//		mGroupList = new ArrayList<String>();
-//		mChildList = new ArrayList<ArrayList<String>>();
-//		mChildListContent = new ArrayList<String>();
-//
-//		mGroupList.add(HomeActivity.me.getString(R.string.time_title));
-//		mGroupList.add("group2");
-//		mGroupList.add("group3");
-//
-//		mChildListContent.add(HomeActivity.me.getString(R.string.start_time));
-//		mChildListContent.add(HomeActivity.me.getString(R.string.end_time));
-//		mChildListContent.add("3");
-//
-//		mChildList.add(mChildListContent);
-//		mChildList.add(mChildListContent);
-//		mChildList.add(mChildListContent);
-	}
-	
 	private void initComponent() {
 		contentT = (EditText) findViewById(R.id.contentText);
 		cateLay = (LinearLayout) findViewById(R.id.categoryLayout);
@@ -89,44 +68,37 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 		toggleB = (ToggleButton) findViewById(R.id.toggle);
 		timeLay = (LinearLayout) findViewById(R.id.timeLayout);
 		startLay = (LinearLayout) findViewById(R.id.startLayout);
+		stCan = (Button) findViewById(R.id.startCancel);
+		stD = (Button) findViewById(R.id.startDateButton);
+		stT = (Button) findViewById(R.id.startTimeButton);
 		endLay = (LinearLayout) findViewById(R.id.endLayout);
-//		endLay = (LinearLayout) findViewById(R.id.endLayout);
-//		timeGroup = (ExpandableListView) findViewById(R.id.timesetGroup);
-//		mListView = (ExpandableListView) findViewById(R.id.timesetGroup);
-//		
-//		timeGroup.setAdapter(new ExpandableListViewAdapter(parent));
-//		timeGroup.setOnGroupClickListener(new OnGroupClickListener() {
-//			@Override
-//			public boolean onGroupClick(ExpandableListView pa, View v,
-//					int groupPosition, long id) {
-//				Toast.makeText(parent, "g click = " + groupPosition, 
-//						Toast.LENGTH_SHORT).show();
-//				return false;
-//			}
-//		});
+		endCan = (Button) findViewById(R.id.endCancel);
+		endD = (Button) findViewById(R.id.endDateButton);
+		endT = (Button) findViewById(R.id.endTimeButton);
 		
 		toggleB.setChecked(true);
 		toggleB.setOnCheckedChangeListener(this);
 		
+		Calendar cal = Calendar.getInstance();
+
+        stD.setText(form.format(cal.getTime()));
+        endD.setText(form.format(cal.getTime()));
+        
+        int amorpm = cal.get(Calendar.AM_PM);
+        String ampm = "";
+        if (amorpm == Calendar.AM)
+            ampm = HomeActivity.me.getString(R.string.am);
+        else ampm = HomeActivity.me.getString(R.string.pm);
+        
+        stT.setText(ampm + " " + cal.get(Calendar.HOUR) + "시");
+        cal.add(Calendar.HOUR_OF_DAY, 1);
+        endT.setText(ampm + " " + cal.get(Calendar.HOUR) + "시");
 		
 		okB = (Button) findViewById(R.id.registerButton);
 		cancelB = (Button) findViewById(R.id.cancelButton);
 		
 		okB.setOnClickListener(this);
 		cancelB.setOnClickListener(this);
-		
-		expandableData();
-
-//		mListView.setAdapter(new com.planner.widget.BaseExpandableAdapter(parent, mGroupList, mChildList));
-//		mListView.setOnGroupClickListener(new OnGroupClickListener() {
-//			@Override
-//			public boolean onGroupClick(ExpandableListView p, View v,
-//					int groupPosition, long id) {
-//				Toast.makeText(parent.getApplicationContext(), "g click = " + groupPosition, 
-//						Toast.LENGTH_SHORT).show();
-//				return false;
-//			}
-//		});
 	}
 
 	private void Add() {
@@ -192,6 +164,10 @@ public class AddDialog extends Dialog implements android.view.View.OnClickListen
 		switch (v.getId()) {
 		case R.id.registerButton :
 			Add();
+			this.dismiss();
+			break;
+
+		case R.id.cancelButton :
 			this.dismiss();
 			break;
 		}
