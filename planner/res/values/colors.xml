@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="pastDate">#cecece</color>
-    <color name="today">#ffffff</color>
-    <color name="futureDate">#000000</color>
+    <color name="sunday">#ff6e6e</color>
+    <color name="saturday">#00479d</color>
+    <color name="pastDate">#cbcbcb</color>
     <color name="todayBack">#00a0e9</color>
+    <color name="curBack">#959595</color>
+    
+    <color name="subBack">#F8F8F8</color>
+    
+    <color name="gray">#c3c3c3</color>
+    <color name="skyblue">#ebf7fe</color>
+    <color name="yellow">#fff45c</color>
+    <color name="red">#ec6877</color>
+    <color name="green">#32b16c</color>
+    
 </resources>

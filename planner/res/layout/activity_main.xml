@@ -6,62 +6,74 @@
     android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
     
-   	<LinearLayout
+   	<RelativeLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:layout_alignParentTop="true"
         android:background="#ffffffff" >
         
+   	    <LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_centerVertical="true"
+			android:padding="10dp" >
+      
+			<Button
+				android:id="@+id/menuButton"
+				style="@style/HomeTopButton"
+				android:background="@drawable/menu_icon" />
+		</LinearLayout>
+   	    
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        	android:orientation="vertical"
+        	android:layout_centerInParent="true" >
+	            
+            <TextView 
+                android:id="@+id/todayDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:layout_alignParentTop="true"
+        		android:layout_centerInParent="true"
+                android:textSize="15sp"
+                android:text="0월 0일" />
+	            
+			<LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:gravity="center"
+                android:layout_below="@id/todayDate" >
+	                
+                <Button
+	                android:id="@+id/modeButton"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+        			android:layout_centerInParent="true"
+	                android:background="@android:color/transparent"
+	                android:textSize="30sp"
+	                android:text="데일리" />
+	                
+			</LinearLayout>
+		</RelativeLayout>
+		
         <LinearLayout
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content" >
-	
-	        <Button
-	            android:id="@+id/menuButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:padding="10dp" >
+      
+			<Button
+				android:id="@+id/addButton"
 	            style="@style/HomeTopButton"
-	            android:text="=" />
-	        
-	        <LinearLayout
-	            android:layout_width="wrap_content"
-	            android:layout_height="fill_parent"
-	            android:layout_weight="1"
-	        	android:orientation="vertical" >
-	            
-	            <TextView 
-	                android:id="@+id/todayDate"
-	                android:layout_width="fill_parent"
-	                android:layout_height="wrap_content"
-	                android:layout_weight="0.3"
-	                android:gravity="center_horizontal"
-	                android:layout_gravity="bottom"
-	                android:textSize="15sp"
-	                android:text="0월 0일" />
-	            
-	            <LinearLayout
-	                android:layout_width="fill_parent"
-	                android:layout_height="wrap_content"
-	                android:layout_weight="0.7"
-	                android:gravity="center_horizontal" >
-	                
-	                <Button
-		                android:id="@+id/modeButton"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:background="@android:color/transparent"
-		                android:textSize="30sp"
-		                android:text="데일리" />
-	                
-	            </LinearLayout>
-	        </LinearLayout>
-	        
-	        <Button
-	            android:id="@+id/addButton"
-	            style="@style/HomeTopButton"
-	            android:text="+" />
-	    
-	    </LinearLayout>
-    </LinearLayout>
+	            android:background="@drawable/add_icon" />
+		</LinearLayout>
+    </RelativeLayout>
     
    	<LinearLayout
         android:id="@+id/tabLayout"
@@ -92,7 +104,8 @@
     	android:layout_below="@id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CC000000" />
+        android:background="#CC000000"
+        android:orientation="vertical" />
     
    	<LinearLayout
         android:id="@+id/menuLayout"

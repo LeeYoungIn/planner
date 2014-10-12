@@ -40,7 +40,8 @@
         <EditText
             android:id="@+id/contentText"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:background="@drawable/message_window_9" >
             
             <requestFocus />
         </EditText>
@@ -124,7 +125,7 @@
 		        android:button="@null"
 		        android:textOff=""
 		        android:textOn=""
-		        android:background="@drawable/switchoff"
+		        android:background="@drawable/toggle_selector"
 		         />
 		</LinearLayout>
 		
@@ -249,7 +250,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-        	android:gravity="center" >
+        	android:gravity="center"
+        	android:padding="20dp" >
             
             <Button
 	            android:id="@+id/registerButton"

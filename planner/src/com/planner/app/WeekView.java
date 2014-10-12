@@ -76,14 +76,19 @@ public class WeekView extends LinearLayout implements OnClickListener {
 			
 			String curDay = form.format(Calendar.getInstance().getTime());
 			
-			if (((String) dateB[i].getTag()).compareTo(curDay) < 0) {
-				dateB[i].setTextColor(ColorSet.pastDate);
-			} else {
-				if (((String) dateB[i].getTag()).compareTo(curDay) > 0)
-					dateB[i].setTextColor(Color.BLACK);
-				else {
-					dateB[i].setTextColor(Color.WHITE);
-					dateB[i].setBackgroundColor(ColorSet.todayBack);
+			if (i == 0) dateB[i].setTextColor(R.color.sunday);
+			else if (i == 6) dateB[i].setTextColor(ColorSet.saturday);
+			
+			else {
+				if (((String) dateB[i].getTag()).compareTo(curDay) < 0) {
+					dateB[i].setTextColor(ColorSet.pastDate);
+				} else {
+					if (((String) dateB[i].getTag()).compareTo(curDay) > 0)
+						dateB[i].setTextColor(Color.BLACK);
+					else {
+						dateB[i].setTextColor(Color.WHITE);
+						dateB[i].setBackgroundColor(ColorSet.todayBack);
+					}
 				}
 			}
 		}

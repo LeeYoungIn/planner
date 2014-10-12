@@ -4,14 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.app.ActivityGroup;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,13 +42,14 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 	private TabHost tabHost;
 
 	private int leftMenuWidth;
-	private LinearLayout mainLay, menuLay, empty, tabLay;
+	private RelativeLayout mainLay;
+	private LinearLayout menuLay, empty, tabLay;
 	private static boolean isLeftExpanded;
 	private DisplayMetrics metrics = new DisplayMetrics();
 	private Animation openAni, closeAni;
 	
 	private TextView todayT;
-	private Button menuB, modeB, addB;
+	private Button modeB, menuB, addB;
 	
 	private AddDialog addD;
 	
@@ -72,7 +70,7 @@ public class HomeActivity extends ActivityGroup implements OnClickListener {
 		modeB = (Button) findViewById(R.id.modeButton);
 		addB = (Button) findViewById(R.id.addButton);
 		
-		mainLay = (LinearLayout) findViewById(R.id.mainLayout);
+		mainLay = (RelativeLayout) findViewById(R.id.mainLayout);
 		menuLay = (LinearLayout) findViewById(R.id.menuLayout);
 		tabLay = (LinearLayout) findViewById(R.id.tabLayout);
 		empty = (LinearLayout) findViewById(R.id.empty);
