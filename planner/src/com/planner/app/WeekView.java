@@ -22,7 +22,8 @@ public class WeekView extends LinearLayout implements OnClickListener {
 
 	private final LinearLayout.LayoutParams FFparam = new LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
 	private final SimpleDateFormat form = new SimpleDateFormat("yyyyMMdd");
-	
+
+	private LinearLayout[] dateL = new LinearLayout[7];
 	private Button[] dateB = new Button[7];
 	public static LinearLayout dateLay;
 	private LinearLayout subLay;
@@ -48,6 +49,14 @@ public class WeekView extends LinearLayout implements OnClickListener {
 		
 		dateLay = (LinearLayout) v.findViewById(R.id.dateLayout);
 		
+		dateL[0] = (LinearLayout) v.findViewById(R.id.dateL0);
+		dateL[1] = (LinearLayout) v.findViewById(R.id.dateL1);
+		dateL[2] = (LinearLayout) v.findViewById(R.id.dateL2);
+		dateL[3] = (LinearLayout) v.findViewById(R.id.dateL3);
+		dateL[4] = (LinearLayout) v.findViewById(R.id.dateL4);
+		dateL[5] = (LinearLayout) v.findViewById(R.id.dateL5);
+		dateL[6] = (LinearLayout) v.findViewById(R.id.dateL6);
+		
 		dateB[0] = (Button) v.findViewById(R.id.date0);
 		dateB[1] = (Button) v.findViewById(R.id.date1);
 		dateB[2] = (Button) v.findViewById(R.id.date2);
@@ -66,6 +75,7 @@ public class WeekView extends LinearLayout implements OnClickListener {
 	
 	private void setDateTabs() {
 		for (int i = 0; i < NumSet.WEEK_DAYS; i++) {
+			
 			Calendar date = cal;
 			date.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
 			date.add(Calendar.DAY_OF_YEAR, i);
@@ -74,20 +84,35 @@ public class WeekView extends LinearLayout implements OnClickListener {
 			dateB[i].setText(date.get(Calendar.DATE) + "");
 			dateB[i].setTag(form.format(date.getTime()));
 			
+			setDateBack(NumSet.WEEK_DAYS);
+		}
+	}
+	
+	private void setDateBack(int index) {
+		for (int i = 0; i < NumSet.WEEK_DAYS; i++) {
+			
+			if (index == NumSet.WEEK_DAYS) continue;
+			
 			String curDay = form.format(Calendar.getInstance().getTime());
 			
-			if (i == 0) dateB[i].setTextColor(R.color.sunday);
-			else if (i == 6) dateB[i].setTextColor(ColorSet.saturday);
+			if (i == 0) {
+				dateB[i].setTextColor(ColorSet.sunday);
+			}
+			else if (i == 6) {
+				dateB[i].setTextColor(ColorSet.saturday);
+			}
 			
 			else {
 				if (((String) dateB[i].getTag()).compareTo(curDay) < 0) {
 					dateB[i].setTextColor(ColorSet.pastDate);
+					dateB[i].setBackground(null);
 				} else {
-					if (((String) dateB[i].getTag()).compareTo(curDay) > 0)
+					if (((String) dateB[i].getTag()).compareTo(curDay) > 0) {
 						dateB[i].setTextColor(Color.BLACK);
-					else {
-						dateB[i].setTextColor(Color.WHITE);
-						dateB[i].setBackgroundColor(ColorSet.todayBack);
+						dateB[i].setBackground(null);
+					} else {
+						dateB[i].setTextColor(Color.BLACK);
+						dateB[i].setBackgroundResource(R.drawable.today_circle);
 					}
 				}
 			}
@@ -111,10 +136,16 @@ public class WeekView extends LinearLayout implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
+		
 		int index = 0;
 		
 		for (index = 0; index < NumSet.WEEK_DAYS; index++)
 			if (v.equals(dateB[index])) break;
+
+		setDateBack(index);
+		
+		dateB[index].setTextColor(Color.WHITE);
+		dateB[index].setBackgroundResource(R.drawable.cur_circle);
 		
 		Calendar c = ((FrameActivity)FrameActivity.me).change();
 		c.add(Calendar.DAY_OF_YEAR, index);

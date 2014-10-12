@@ -18,6 +18,7 @@
 	        android:background="@drawable/date_border" >
 	        
 		    <LinearLayout
+			    android:id="@+id/dateL0"
 		        style="@style/DateBtnLay" >
 		        
 		        <Button
@@ -25,6 +26,7 @@
 			        style="@style/DateButton" />
 		    </LinearLayout>
 	        <LinearLayout
+			    android:id="@+id/dateL1"
 		        style="@style/DateBtnLay" >
 		        
 		        <Button
@@ -32,6 +34,7 @@
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
+			    android:id="@+id/dateL2"
 		        style="@style/DateBtnLay" >
 		        
 		        <Button
@@ -39,6 +42,7 @@
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
+			    android:id="@+id/dateL3"
 		        style="@style/DateBtnLay" >
 		        
 		        <Button
@@ -46,6 +50,7 @@
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
+			    android:id="@+id/dateL4"
 		        style="@style/DateBtnLay" >
 		        
 		        <Button
@@ -53,6 +58,7 @@
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
+			    android:id="@+id/dateL5"
 		        style="@style/DateBtnLay" >
 		        
 		        <Button
@@ -60,6 +66,7 @@
 			        style="@style/DateButton" />
 		    </LinearLayout>
 		    <LinearLayout
+			    android:id="@+id/dateL6"
 		        style="@style/DateBtnLay" >
 		        
 		        <Button
